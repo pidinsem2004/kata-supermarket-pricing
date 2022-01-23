@@ -1,12 +1,13 @@
 package kata.dev;
 
+import kata.dev.entities.Product;
+
 public  class KataSupermarketPricing {
 
-    public static boolean isPricePositive (int price){
-       return price >0;
 
-    }
-    public static  void main(String...args){
-        System.out.print("Bonjour Test");
+    public  void  theProductQuantityInStockIsNullThrowException(Product product) {
+        if (product.getAvailableQuantity()==0)
+             throw  new RuntimeException("Non Authorized Product Quantity in Stock");
+
     }
 }
