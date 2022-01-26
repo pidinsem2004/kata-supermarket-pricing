@@ -130,4 +130,47 @@ public class KataSupermarketPricingTest {
 
     }
 
+
+
+    //Checkout Order Without Special Offer
+    @Test
+    public void checkoutOrderWithoutSpecialOffer() {
+        orderList.clear();
+        Order o = new Order();
+        o.setOrderProduct(new Product("orange", 20, 100, false));
+        o.setOrderQuantity(20);
+        orderList.add(o);
+        assertEquals(400, kataSupermarketPricing.checkoutOrderWithoutSpecialOffer(orderList));
+    }
+
+    //Checkout Order : Three cans of beans for 1$
+    @Test
+    public void checkoutOrderWithThreeCansOfBeansForOnedollar() {
+        orderList.clear();
+        offerRuleList.clear();
+        Order o = new Order(new Product("orange", 20, 100, false), 3);
+        orderList.add(o);
+        o = new Order(new Product("orange", 20, 100, false), 2);
+        orderList.add(o);
+        OfferRule or = new OfferRule("orange", 3, 50);
+        offerRuleList.add(or);
+        assertEquals(90, kataSupermarketPricing.checkoutOrderWithThreeCansOfBeansForOnedollar(orderList, offerRuleList));
+    }
+
+
+    //Checkout Order : by Two Get One for free
+    @Test
+    public void checkoutOrderWithByTwoGetOneFree() {
+        orderList.clear();
+        offerRuleList.clear();
+        Order o = new Order(new Product("orange", 20, 100, false), 3);
+        orderList.add(o);
+        o = new Order(new Product("orange", 20, 100, false), 3);
+        orderList.add(o);
+        OfferRule or = new OfferRule("orange", 3, 40);
+        offerRuleList.add(or);
+        assertEquals(80, kataSupermarketPricing.checkoutOrderWithByTwoGetOneFree(orderList, offerRuleList));
+    }
+
+
 }

@@ -61,4 +61,19 @@ public  class KataSupermarketPricing {
         return  offerRuleList.size();
     }
 
+
+    public int checkoutOrderWithoutSpecialOffer(List<Order> orderList) {
+        return OrderService.checkout(orderList);
+    }
+
+    public int checkoutOrderWithThreeCansOfBeansForOnedollar(List<Order> orderList, List<OfferRule> offerRuleList) {
+        return OrderService.checkout(orderList, offerRuleList);
+
+    }
+
+    public int checkoutOrderWithByTwoGetOneFree(List<Order> orderList, List<OfferRule> offerRuleList) {
+        return OrderService.checkout(orderList, offerRuleList);
+    }
+
+
 }
