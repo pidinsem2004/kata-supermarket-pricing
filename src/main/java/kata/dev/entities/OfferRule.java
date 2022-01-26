@@ -1,9 +1,15 @@
 package kata.dev.entities;
 
+import kata.dev.dao.DataAccess;
+
+import java.util.List;
+
 public class OfferRule {
-    private String productName ;
-    private int quantity ;
+    private String productName;
+    private int quantity;
     private int offerPrice;
+
+
 
     public OfferRule() {
     }
@@ -12,6 +18,7 @@ public class OfferRule {
         this.productName = productName;
         this.quantity = quantity;
         this.offerPrice = offerPrice;
+
     }
 
     public String getProductName() {
@@ -38,6 +45,7 @@ public class OfferRule {
         this.offerPrice = offerPrice;
     }
 
+
     @Override
     public String toString() {
         return "OfferRule{" +
@@ -46,4 +54,11 @@ public class OfferRule {
                 ", offerPrice=" + offerPrice +
                 '}';
     }
+
+
+
+
 }
+
+//
+

@@ -1,12 +1,13 @@
 package kata.dev;
 
+import kata.dev.entities.OfferRule;
 import kata.dev.entities.Order;
 import kata.dev.entities.Product;
+import kata.dev.service.OrderService;
 
 import java.util.List;
 
 public  class KataSupermarketPricing {
-
 
     public  void  theProductQuantityInStockIsNullThrowException(Product product) {
         if (product.getAvailableQuantity()==0)
@@ -35,4 +36,13 @@ public  class KataSupermarketPricing {
         if(order.getOrderProduct().getAvailableQuantity()==0)
             throw new RuntimeException("Unavailable product in Stock");
     }
+
+    public void productQuantityInOrderShouldBeGreaterThanZero(Order order) {
+        if(order.getOrderQuantity()==0)
+            throw new RuntimeException("Non Authorized null quantity");
+    }
+
+
+
+
 }
