@@ -82,5 +82,52 @@ public class KataSupermarketPricingTest {
         kataSupermarketPricing.productQuantityInOrderShouldBeGreaterThanZero(order);
     }
 
+    //Adding pricing rule without product name, throw exception;
+    @Test
+    public void pricingRuleWithoutProductThrowException() {
+        exception.expect(RuntimeException.class);
+        OfferRule or = new OfferRule();
+        or.setQuantity(10);
+        or.setOfferPrice(50);
+        kataSupermarketPricing.pricingRuleWithoutProductThrowException(or);
+
+    }
+
+    //Adding pricing Rule without quantity, throw exception;
+
+    @Test
+    public void addingPricingRuleWithoutQuantityThrowException() {
+
+        exception.expect(RuntimeException.class);
+        OfferRule or = new OfferRule();
+        or.setProductName(productList.get(0).getName());
+        or.setOfferPrice(50);
+        kataSupermarketPricing.addingPricingRuleWithoutQuantityThrowException(or);
+    }
+
+
+    //Adding pricing rule without special price, throw an exception;
+    @Test
+    public void addingPricingRuleWithoutSpecialPriceThrowException() {
+        exception.expect(RuntimeException.class);
+        OfferRule or = new OfferRule();
+        or.setQuantity(10);
+        or.setProductName(productList.get(0).getName());
+        kataSupermarketPricing.addingPricingRuleWithoutSpecialPriceThrowException(or);
+    }
+
+
+    //Adding pricing rule to the product
+    @Test
+    public void AddingPricingRule() {
+        offerRuleList.clear();
+        OfferRule or = new OfferRule();
+        or.setProductName(productList.get(0).getName());
+        or.setQuantity(10);
+        or.setOfferPrice(50);
+        offerRuleList.add(or);
+        assertEquals(1, kataSupermarketPricing.AddingPricingRule(offerRuleList));
+
+    }
 
 }

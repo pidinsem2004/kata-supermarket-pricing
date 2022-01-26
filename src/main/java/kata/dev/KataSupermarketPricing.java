@@ -42,7 +42,23 @@ public  class KataSupermarketPricing {
             throw new RuntimeException("Non Authorized null quantity");
     }
 
+    public void pricingRuleWithoutProductThrowException(OfferRule or) {
+        if (or.getProductName().equalsIgnoreCase("") || or.getProductName()==null)
+            throw  new RuntimeException("Invalid Offer Rule without product name ");
 
+    }
 
+    public void addingPricingRuleWithoutQuantityThrowException(OfferRule or) {
+        if (or.getQuantity()==0)
+            throw  new RuntimeException("Invalid Offer Quantity");
+    }
+    public void addingPricingRuleWithoutSpecialPriceThrowException(OfferRule or) {
+        if(or.getOfferPrice()==0)
+            throw  new RuntimeException("Invalid offer price");
+    }
+
+    public int  AddingPricingRule(List<OfferRule> offerRuleList) {
+        return  offerRuleList.size();
+    }
 
 }
