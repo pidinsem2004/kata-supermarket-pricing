@@ -35,4 +35,33 @@ public class KataSupermarketPricingTest {
     }
 
 
+    /**
+     * Test case
+     * The product quantity in stock is null, throw exception
+     *
+     * @throws RuntimeException if the product quantity is null
+     *                          or not defined
+     */
+    @Test
+    public void theProductQuantityInStockIsNullThrowException() {
+        exception.expect(RuntimeException.class);
+        theProductQuantityInStockIsNullThrowExceptionImpl(productList.get(0));
+
+    }
+
+
+    /**
+     * Implementation of the Test case
+     * The product quantity in stock is null, throw exception
+     *
+     * @throws RuntimeException if the product quantity is null
+     *                          or not defined
+     */
+    public void theProductQuantityInStockIsNullThrowExceptionImpl(Product product) {
+
+        if (product.getAvailableQuantity() == 0)
+            throw new RuntimeException("The Product quabtity is undefined");
+    }
+
+
 }
