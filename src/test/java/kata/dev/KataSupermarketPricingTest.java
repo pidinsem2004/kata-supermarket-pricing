@@ -4,6 +4,8 @@ import kata.dev.dao.DataAccess;
 import kata.dev.entities.OfferRule;
 import kata.dev.entities.Order;
 import kata.dev.entities.Product;
+import kata.dev.service.IOrder;
+import kata.dev.service.NormalOrder;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -306,6 +308,35 @@ public class KataSupermarketPricingTest {
     public int AddingPricingRuleImpl(List<OfferRule> offerRuleList) {
         return offerRuleList.size();
     }
+
+
+    /**
+     * test case 10
+     * Checkout Order Without Special Offer
+     *
+     * @throws RuntimeException
+     */
+    @Test
+    public void checkoutOrderWithoutSpecialOffer() {
+        orderList.clear();
+        Order o = new Order();
+        o.setOrderProduct(new Product("orange", 20, 100, false));
+        o.setOrderQuantity(20);
+        orderList.add(o);
+        assertEquals(400, checkoutOrderWithoutSpecialOfferImpl(orderList));
+    }
+
+    /**
+     * Implementation
+     * Checkout Order Without Special Offer
+     *
+     * @throws RuntimeException
+     */
+    public int checkoutOrderWithoutSpecialOfferImpl(List<Order> orderList) {
+        IOrder<Order> order = new NormalOrder();
+        return order.checkout(orderList, null);
+    }
+
 
 
 
