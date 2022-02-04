@@ -12,6 +12,7 @@ import org.junit.rules.ExpectedException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class KataSupermarketPricingTest {
@@ -275,6 +276,35 @@ public class KataSupermarketPricingTest {
     public void addingPricingRuleWithoutSpecialPriceThrowExceptionImpl(OfferRule or) {
         if (or.getOfferPrice() == 0)
             throw new RuntimeException("Invalid offer price");
+    }
+
+
+    /**
+     * Test case 10
+     * Adding pricing rule to the product
+     *
+     * @throws RuntimeException
+     */
+    @Test
+    public void AddingPricingRule() {
+        offerRuleList.clear();
+        OfferRule or = new OfferRule();
+        or.setProductName(productList.get(0).getName());
+        or.setQuantity(10);
+        or.setOfferPrice(50);
+        offerRuleList.add(or);
+        assertEquals(1, AddingPricingRuleImpl(offerRuleList));
+
+    }
+
+    /**
+     * Implementation
+     * Adding pricing rule to the product
+     *
+     * @throws RuntimeException
+     */
+    public int AddingPricingRuleImpl(List<OfferRule> offerRuleList) {
+        return offerRuleList.size();
     }
 
 
