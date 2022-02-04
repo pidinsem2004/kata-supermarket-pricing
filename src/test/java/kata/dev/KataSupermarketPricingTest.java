@@ -64,4 +64,30 @@ public class KataSupermarketPricingTest {
     }
 
 
+    /**
+     * Test case
+     * product should have a name, otherwise throw an exception
+     *
+     * @throws RuntimeException
+     */
+    @Test
+    public void theProductNameIsNullOrEmptyThenThrowException() {
+        exception.expect(RuntimeException.class);
+        theProductNameIsNullOrEmptyImpl(productList.get(1));
+    }
+
+
+    /**
+     * Implementation
+     * product should have a name, otherwise throw an exception
+     *
+     * @throws RuntimeException
+     */
+    public void theProductNameIsNullOrEmptyImpl(Product product) {
+
+        if (product.getName() == null || product.getName() == "")
+            throw new RuntimeException("The Product Name Should not be null or empty");
+    }
+
+
 }
