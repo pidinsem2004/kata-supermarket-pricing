@@ -372,4 +372,39 @@ public class KataSupermarketPricingTest {
 
     }
 
+
+    /**
+     * Test case 12
+     * Checkout Order : by Two Get One for free
+     *
+     * @throws RuntimeException
+     */
+    @Test
+    public void checkoutOrderWithByTwoGetOneFree() {
+        orderList.clear();
+        offerRuleList.clear();
+        Order o = new Order(new Product("orange", 20, 100, false), 3);
+        orderList.add(o);
+        o = new Order(new Product("orange", 20, 100, false), 3);
+        orderList.add(o);
+        OfferRule or = new OfferRule("orange", 3, 40);
+        offerRuleList.add(or);
+        assertEquals(80, checkoutOrderWithByTwoGetOneFree(orderList, offerRuleList));
+    }
+
+    /**
+     * Implementation
+     * Checkout Order : by Two Get One for free
+     *
+     * @throws RuntimeException
+     */
+    public int checkoutOrderWithByTwoGetOneFree(List<Order> orderList, List<OfferRule> offerRuleList) {
+        IOrder<Order> order = new PromotionalOrder();
+        return order.checkout(orderList, offerRuleList);
+    }
+
+
 }
+
+
+
