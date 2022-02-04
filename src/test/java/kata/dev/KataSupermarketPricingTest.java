@@ -12,7 +12,6 @@ import org.junit.rules.ExpectedException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class KataSupermarketPricingTest {
@@ -36,7 +35,7 @@ public class KataSupermarketPricingTest {
 
 
     /**
-     * Test case
+     * Test case 1
      * The product quantity in stock is null, throw exception
      *
      * @throws RuntimeException if the product quantity is null
@@ -65,7 +64,7 @@ public class KataSupermarketPricingTest {
 
 
     /**
-     * Test case
+     * Test case 2
      * product should have a name, otherwise throw an exception
      *
      * @throws RuntimeException
@@ -90,7 +89,7 @@ public class KataSupermarketPricingTest {
 
 
     /**
-     * Test case
+     * Test case 3
      * if two product with same name in stock, throw an exception
      *
      * @throws RuntimeException
@@ -116,7 +115,7 @@ public class KataSupermarketPricingTest {
 
 
     /**
-     * Test case
+     * Test case 4
      * An order should have at least one product, if not exception is throw
      *
      * @throws RuntimeException
@@ -142,7 +141,7 @@ public class KataSupermarketPricingTest {
 
 
     /**
-     * Test case
+     * Test case 5
      * order unavailable product in stock, Throw exception
      *
      * @throws RuntimeException
@@ -168,6 +167,30 @@ public class KataSupermarketPricingTest {
     }
 
 
+    /**
+     * Test case 6
+     * product quantity in order should be greater than 0
+     *
+     * @throws RuntimeException
+     */
+    @Test
+    public void productQuantityInOrderShouldBeGreaterThanZero() {
+        exception.expect(RuntimeException.class);
+        Order order = new Order(productList.get(1), 0);
+        productQuantityInOrderShouldBeGreaterThanZeroImpl(order);
+    }
+
+    /**
+     * Implementation
+     * product quantity in order should be greater than 0
+     *
+     * @throws RuntimeException
+     */
+    public void productQuantityInOrderShouldBeGreaterThanZeroImpl(Order order) {
+
+        if (order.getOrderQuantity() == 0)
+            throw new RuntimeException("Non Authorized null quantity");
+    }
 
 
 }
