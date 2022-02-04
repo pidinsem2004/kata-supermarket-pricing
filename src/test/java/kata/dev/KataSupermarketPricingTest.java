@@ -76,7 +76,6 @@ public class KataSupermarketPricingTest {
         theProductNameIsNullOrEmptyImpl(productList.get(1));
     }
 
-
     /**
      * Implementation
      * product should have a name, otherwise throw an exception
@@ -87,6 +86,32 @@ public class KataSupermarketPricingTest {
 
         if (product.getName() == null || product.getName() == "")
             throw new RuntimeException("The Product Name Should not be null or empty");
+    }
+
+
+    /**
+     * Test case
+     * if two product with same name in stock, throw an exception
+     *
+     * @throws RuntimeException
+     */
+    @Test
+    public void twoProductInStockWithTheSameNameThrowException() {
+        exception.expect(RuntimeException.class);
+        assertTrue(twoProductInStockWithTheSameNameImpl(productList.get(0), productList.get(2)));
+    }
+
+    /**
+     * Implementation
+     * if two product with same name in stock, throw an exception
+     *
+     * @throws RuntimeException
+     */
+    public boolean twoProductInStockWithTheSameNameImpl(Product p1, Product p2) {
+
+        if (p1.getName().equalsIgnoreCase(p2.getName()))
+            throw new RuntimeException("The product name should be unique");
+        return true;
     }
 
 
