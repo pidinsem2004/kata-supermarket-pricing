@@ -222,5 +222,34 @@ public class KataSupermarketPricingTest {
     }
 
 
+    /**
+     * Test case 8
+     * Adding pricing Rule without quantity, throw exception;
+     *
+     * @throws RuntimeException
+     */
+    @Test
+    public void addingPricingRuleWithoutQuantityThrowException() {
+
+        exception.expect(RuntimeException.class);
+        OfferRule or = new OfferRule();
+        or.setProductName(productList.get(0).getName());
+        or.setOfferPrice(50);
+        addingPricingRuleWithoutQuantityThrowException(or);
+    }
+
+    /**
+     * Implementation
+     * Adding pricing Rule without quantity, throw exception;
+     *
+     * @throws RuntimeException
+     */
+    public void addingPricingRuleWithoutQuantityThrowException(OfferRule or) {
+
+        if (or.getQuantity() == 0)
+            throw new RuntimeException("Invalid Offer Quantity");
+    }
+
+
 
 }
