@@ -115,4 +115,59 @@ public class KataSupermarketPricingTest {
     }
 
 
+    /**
+     * Test case
+     * An order should have at least one product, if not exception is throw
+     *
+     * @throws RuntimeException
+     */
+    @Test
+    public void oderWithNoProduct() {
+        exception.expect(RuntimeException.class);
+        orderList.clear();
+        oderWithNoProductImpl(orderList);
+    }
+
+    /**
+     * Implementation
+     * An order should have at least one product, if not exception is throw
+     *
+     * @throws RuntimeException
+     */
+    public void oderWithNoProductImpl(List<Order> orderList) {
+
+        if (orderList.size() == 0)
+            throw new RuntimeException("An order should have at least one product");
+    }
+
+
+    /**
+     * Test case
+     * order unavailable product in stock, Throw exception
+     *
+     * @throws RuntimeException
+     */
+    @Test
+    public void unavailableProductInStockThrowException() {
+        exception.expect(RuntimeException.class);
+        Order order = new Order(productList.get(1), 10);
+        unavailableProductInStockThrowExceptionImpl(order);
+
+    }
+
+    /**
+     * Implementation
+     * order unavailable product in stock, Throw exception
+     *
+     * @throws RuntimeException
+     */
+    public void unavailableProductInStockThrowExceptionImpl(Order order) {
+
+        if (order.getOrderProduct().getAvailableQuantity() == 0)
+            throw new RuntimeException("Unavailable product in Stock");
+    }
+
+
+
+
 }
