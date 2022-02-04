@@ -251,5 +251,34 @@ public class KataSupermarketPricingTest {
     }
 
 
+    /**
+     * Test case 9
+     * Adding pricing rule without special price, throw an exception;
+     *
+     * @throws RuntimeException
+     */
+    @Test
+    public void addingPricingRuleWithoutSpecialPriceThrowException() {
+        exception.expect(RuntimeException.class);
+        OfferRule or = new OfferRule();
+        or.setQuantity(10);
+        or.setProductName(productList.get(0).getName());
+        addingPricingRuleWithoutSpecialPriceThrowExceptionImpl(or);
+    }
+
+    /**
+     * Implementation
+     * Adding pricing rule without special price, throw an exception;
+     *
+     * @throws RuntimeException
+     */
+    public void addingPricingRuleWithoutSpecialPriceThrowExceptionImpl(OfferRule or) {
+        if (or.getOfferPrice() == 0)
+            throw new RuntimeException("Invalid offer price");
+    }
+
+
+
+
 
 }
