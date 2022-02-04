@@ -6,6 +6,7 @@ import kata.dev.entities.Order;
 import kata.dev.entities.Product;
 import kata.dev.service.IOrder;
 import kata.dev.service.NormalOrder;
+import kata.dev.service.PromotionalOrder;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -338,8 +339,37 @@ public class KataSupermarketPricingTest {
     }
 
 
+    /**
+     * Test case 11
+     * Checkout Order : Three cans of beans for 1$
+     *
+     * @throws RuntimeException
+     */
+    @Test
+    public void checkoutOrderWithThreeCansOfBeansForOnedollar() {
+        orderList.clear();
+        offerRuleList.clear();
+        Order o = new Order(new Product("orange", 20, 100, false), 3);
+        orderList.add(o);
+        o = new Order(new Product("orange", 20, 100, false), 2);
+        orderList.add(o);
+        OfferRule or = new OfferRule("orange", 3, 50);
+        offerRuleList.add(or);
+        assertEquals(90, checkoutOrderWithThreeCansOfBeansForOnedollarImpl(orderList, offerRuleList));
+    }
+
+    /**
+     * Implementation
+     * Checkout Order : Three cans of beans for 1$
+     *
+     * @throws RuntimeException
+     */
+    public int checkoutOrderWithThreeCansOfBeansForOnedollarImpl(List<Order> orderList, List<OfferRule> offerRuleList) {
+
+        IOrder<Order> order = new PromotionalOrder();
+        return order.checkout(orderList, offerRuleList);
 
 
-
+    }
 
 }
